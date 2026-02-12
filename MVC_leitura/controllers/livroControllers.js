@@ -30,7 +30,7 @@ const livroController = {
     //confirmando que o livro foi lido
     marcarComoLido: (req, res) =>{
         const {id} = req.body;
-        const livro = listaLivros.find(l => l.id === Number(id))     //validando com find comparando com o id 
+        const livro = listaLivros.find(l => l.id === Number(id))     //validando com find comparando com o id formato objeto
         livro.marcarComoLido();
         res.redirect('/livros');
     }
