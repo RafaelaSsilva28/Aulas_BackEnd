@@ -1,28 +1,27 @@
-class Rank {
-    constructor(id, jogador, pontuacao, nivel, acoes){
-        if(!titulo || !autor){
-            throw new Error('Jogador ou pontuação obrigatorios')
+class Ranking {
+    constructor(id, nome, pontuacao){
+        if(!nome || !pontuacao){
+            throw new Error('Titulo ou autor são obrigatorios')
         }
         this.id = id;
-        this.jogador = jogador;
+        this.nome = nome;
         this.pontuacao = pontuacao;
-        this.nivel = nivel; 
-        this.acoes = acoes;
+        this.ponto = false;    //lido
     }
     //metodo
     descricao(){
-        return`${this.id} - ${this.jogador}`       //chamando o titulo e o autor do livro
+        return`${this.nome} - ${this.pontuacao}`       //chamando o nome e o pontuacao do livro
     }
     //metodo com condição
-    verificarPontuacao(){
-        if(this.pontuacao >= 450 ) return 'AVANÇADO';
-        if(this.pontuacao <= 300) return 'INTERMEDIARIO';
-        return 'INICIANTES';
+    verificarPontuacao(){    //verificarTamanho
+        if(this.pontuacao <= 150) return 'iniciante';
+        if(this.pontuacao <= 350) return 'intermediario';
+        return 'acima do nivel';
     }
-    // //metodo
-    // marcarComoLido(){
-    //     this.lido = true;
+    //metodo
+    pontos(){  //como lido
+        this.ponto = true;
         
-    // }
+    }
 }
-export default Rank
+export default Ranking
