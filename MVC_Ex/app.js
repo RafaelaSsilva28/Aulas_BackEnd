@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path'
 import { fileURLToPath } from 'url';
-import rotasRank from './routes/rotasRank.js'
+import rotasJogador from './routes/rotasJogador.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,11 +14,12 @@ app.use(express.urlencoded({ extended: true}));
 //quando acessar a pagina principla ele renderiza a livros.ejs
 
 //rotas de livros
-app.use(rotasRank)
+app.use(rotasJogador)
 
 app.get('/', (req, res) =>{
-    res.redirect('/jogador');
+    res.redirect('/jogadores');
 });
+
 
 
 const porta = 3000;

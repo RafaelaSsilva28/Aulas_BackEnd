@@ -145,32 +145,28 @@
 <body>
     <div class="wrap"> 
         <div class="card">  <!-- fazendo a lista de livros -->
-            <h1>Ranking de Jogadores</h1>
+            <h1>Lista de leitura</h1>
             <!-- Listando livros -->
-             
-            <% jogador.forEach(j=> { %>
+            <% jogadores.forEach(j=> { %>
                 <div class="item">
                     <div>
                         <strong>   <!-- criando as celulas -->
-                            <%= j.descricao() %>
+                            <%= j.resumo() %>
                         </strong>
                         <small class="badge">
-                            <%= j.verificarPontuacao() %>
+                            <%= j.nivel() %>
                         </small>
-                        <% if(j.ponto) { %>
-                            <small class="badge lido">Lido</small>
-                            <% } %>
+                     
                                 <div class="muted">
                                     <%= j.pontuacao %> Pontuação
                                 </div>
                     </div>
               
                 <div class="actions">    
-                    <form action="/jogador/marcar-lido" method="post" style="display: inline;">
+                    <form action="/jogadores/adicionar-ponto" method="post" style="display: inline;">
                         <input type="hidden" name="id" value="<%= j.id %>" />
-                        <button class="warning" <%= j.ponto ? 'disabled' : '' %>>
-                                    <input type="number" name="+10 pts" placeholder="+10 pts" min="1" required />
-
+                        <button class="warning">
+                            + 50
                         </button>
                     </form>
                 </div>
@@ -181,11 +177,10 @@
                 <!--Codigo de adicionar  livros  -->
                       <!-- //Adicionando livros -->
 
-      <h2 style="text-align:center; margin: 8px 0 12px;">Adicionar Jogadores</h2>
-      <form action="/jogador" method="POST" class="row">
-        <input type="text" name="titulo" placeholder="Título" required />
-        <input type="text" name="autor" placeholder="Autor" required />
-        <input type="number" name="paginas" placeholder="Páginas" min="1" required />
+      <h2 style="text-align:center; margin: 8px 0 12px;">Adicionar Jogador</h2>
+      <form action="/jogadores" method="POST" class="row">
+        <input type="text" name="nome" placeholder="Jogador" required />
+        <input type="number" name="pontuacao" placeholder="Pontuação" min="1" required />
         <button type="submit">Adicionar</button>
       </form>
         </div>
