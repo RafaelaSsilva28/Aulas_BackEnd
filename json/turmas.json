@@ -1,0 +1,29 @@
+{
+    "simples": "Olá Mundo!" ,
+
+    "aluno": {
+        "nome": "Ana",
+        "idade": 18,
+        "curso": "DS"
+    },
+    "listadeAlunos":[
+        {"nome": "Rafaela", "idade": 17},
+        {"nome": "Susany", "idade": 18}
+    ],
+    "objetoDentroObjeto":{
+        "nome": "Danielly",
+        "curso":{
+            "nome": "Desenvolvimento de Sistemas",
+            "periodo": "Noturno"
+        }
+    },
+
+    "listaDentrodeObjetos":{
+        "turma": "3° B DS",
+        "alunos": [
+            {"nome": "Ana", "idade": 17},
+            {"nome": "Danielly", "idade": 18},
+            {"nome": "Susany", "idade": 17}
+        ]
+    }
+}

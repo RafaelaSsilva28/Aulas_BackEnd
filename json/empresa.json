@@ -1,0 +1,30 @@
+{
+    "empresa": {
+        "nome": "TechPlus",
+        "tipoProdutos": "eletronicos",
+        "produtos":[
+            {"nome": "Mouse Gamer", "valor": 120},
+            {"nome": "Teclado Mecanico", "valor": 250},
+            {"nome": "Headset USB", "valor": 180},
+            {"nome": "Monito LED 24", "valor": 850},
+            {"nome": "Webcam Full HD", "valor": 150}
+        ]
+    },
+
+    "listadeFuncionarios":[
+        {"nome": "Marcos Silva", "idade": 32, "setor": "Suporte Tecnico"},
+        {"nome": "Beatriz Costa", "idade": 27, "setor": "Vendas"},
+        {"nome": "Ricardo Alves", "idade": 29, "setor": "Logistica"},
+        {"nome": "Juliana Monteiro", "idade": 34, "setor": "Marketing"}
+    ],
+
+    "pedidos":{
+        "clientes": [
+            {"nome": "Ana Souza", "produto": "Mouse Gamer", "valor": 120 , "mes": "Janeiro"},
+            {"nome": "Carlos Mendes", "produto": "Tecldo Mecanico", "valor": 250, "mes": "Janeiro"},
+            {"nome": "Fernanda Lima", "produto": "Webcam Full HD", "valor": 150,  "mes": "Janeiro"},
+            {"nome": "Gabriel Santos", "produto": "Monitor LED 24", "valor": 850,  "mes": "Fevereiro"},
+            {"nome": "Marina Rocha", "produto": "Headset USB", "valor": 180,  "mes": "Fevereiro"}
+        ]
+    }
+}
