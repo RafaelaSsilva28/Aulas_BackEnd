@@ -1,0 +1,20 @@
+<title>Document</title>
+<header>
+    <body>
+        <h2>Doguinhos</h2>
+        <input type="text" id="id">
+        <button onclick="carregarImagem()">MOSTRAR</button>
+
+        <img id="dog" src="" alt="dog">
+
+        <script>
+            async function carregarImagem() {
+                const id = document.getElementById('id').value;
+                const resposta = await fetch(`/dog/${id}`);
+                const dados = await resposta.json()
+
+                document.getElementById('dog').src = dados.url
+            }
+        </script>
+    </body>
+</header>
