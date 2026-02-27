@@ -4,7 +4,7 @@ const app = express();
 
 //criação do primeiro endpoint
 app.get("/", async (req, res) => {
-  res.json("API FUNCIONANDO");
+  res.status(200).json("API FUNCIONANDO");
 
 });
 
@@ -24,7 +24,8 @@ app.get("/cep/:codigo", async (req, res) => {
 
   const cidade = dados.localidade; //acessando dado da cidade
   const estado = dados.uf;
-  res.json({ cidade, estado }); //mostrando ta tela apenas a cidade e o estado
+
+  res.status(201).json({ cidade, estado }); //mostrando ta tela apenas a cidade e o estado
 
   //res.json(dados);   //mostrando na tela tudo
 });
@@ -51,7 +52,7 @@ app.get("/starwars/:id", async (req, res) => {
   res.json({ nome, altura, peso, cor_dos_olhos }); //mostrando na tela tudo
 });
 
-//novo endpoint com imagem
+//novo endpoint com imagem 
 app.get('/dog/:id', async(req, res) =>{
     const id = req.params.id;
     const url = `https://http.dog/${id}.jpg`
