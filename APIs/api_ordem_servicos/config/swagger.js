@@ -221,13 +221,13 @@ const documentacao = {
             }
         },
 
-       "/ordem_servicos/{id_ordem}": {
-  put: {
+        "/ordem_servicos/{id_ordem}": {
+    put: {
     tags: ["Ordem_Servicos"],
     summary: "Atualizar ordem de serviço",
 
     parameters: [
-      {
+        {
         name: "id_ordem",
         in: "path",
         required: true,
@@ -237,22 +237,22 @@ const documentacao = {
     ],
 
     requestBody: {
-      required: true,
-      content: {
+        required: true,
+        content: {
         "application/json": {
-          schema: {
+            schema: {
             $ref: "#/components/schemas/Atualizacao_Ordem_Servicos"
-          }
+            }
         }
-      }
+        }
     },
 
     responses: {
-      200: { description: "Ordem atualizada" },
-      404: { description: "Ordem não encontrada" },
-      500: { description: "Erro no servidor" }
+        200: { description: "Ordem atualizada" },
+        404: { description: "Ordem não encontrada" },
+        500: { description: "Erro no servidor" }
     }
-  }
+    }
 }
     },
 
