@@ -1,6 +1,8 @@
 import express from "express";
 import {BD, testarConexao} from './db.js';
 import rotasUsuarios from './src/routes/rotasUsuarios.js'
+import rotasDepartamentos from './src/routes/rotasDepartamentos.js'
+import rotasOrdemServico from './src/routes/rotasOrdemServico.js'
 //------------------------------------ SWAGGER
 //importando swagger
 import swaggerUi from 'swagger-ui-express';
@@ -25,7 +27,8 @@ app.get('/', async(req, res) =>{
 
 //utilizando rotas falando pro App que vamos urilizar as rotas em nossos metodos
 app.use(rotasUsuarios);
-
+app.use(rotasDepartamentos);
+app.use(rotasOrdemServico);
 
 const porta = 3000;
 app.listen(porta, () =>{

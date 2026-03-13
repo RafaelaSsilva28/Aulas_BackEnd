@@ -221,28 +221,39 @@ const documentacao = {
             }
         },
 
-        "/ordem_servicos/{id_ordem}": {
-            put: {
-                tags: ["Ordem_Servicos"],
-                summary: "Atualizar ordem de serviço",
+       "/ordem_servicos/{id_ordem}": {
+  put: {
+    tags: ["Ordem_Servicos"],
+    summary: "Atualizar ordem de serviço",
 
-                parameters: [
-                    {
-                        name: "id_ordem",
-                        in: "path",
-                        required: true,
-                        schema: { type: "integer" },
-                        example: 1
-                    }
-                ],
+    parameters: [
+      {
+        name: "id_ordem",
+        in: "path",
+        required: true,
+        schema: { type: "integer" },
+        example: 1
+    }
+    ],
 
-                responses: {
-                    200: { description: "Ordem atualizada" },
-                    404: { description: "Ordem não encontrada" },
-                    500: { description: "Erro no servidor" }
-                }
-            }
+    requestBody: {
+      required: true,
+      content: {
+        "application/json": {
+          schema: {
+            $ref: "#/components/schemas/Atualizacao_Ordem_Servicos"
+          }
         }
+      }
+    },
+
+    responses: {
+      200: { description: "Ordem atualizada" },
+      404: { description: "Ordem não encontrada" },
+      500: { description: "Erro no servidor" }
+    }
+  }
+}
     },
 
     components: {
@@ -317,22 +328,26 @@ const documentacao = {
             Cadastro_Ordem_Servicos: {
                 type: "object",
                 properties: {
+                    numero_ordem: { type: "integer", example: 2 },
                     titulo: { type: "string", example: "Troca de lâmpada" },
-                    descricao: { type: "string", example: "Trocar lâmpada da sala 3" },
+                    descricao: { type: "string", example: "Trocar luzz da sala 3" },
                     prioridade: { type: "string", example: "Alta" },
                     status: { type: "string", example: "Aberta" }
                 }
             },
             Atualizacao_Ordem_Servicos: {
-                type: "object",
-                required: ["titulo", "descricao", "prioridade", "status"],
-                properties: {
-                    titulo: { type: "string", example: "CASA DE SERVIÇOS" },
-                    descricao: { type: "string",example: "Setor responsável por reparos"  },
-                    prioridade: { type: "string",example: "Alta"  },
-                    status: { type: "string",example: "Aberta"  },
-                }
-            }
+    type: "object",
+    required: ["numero_ordem", "titulo", "descricao", "prioridade", "status", "id_usuario", "id_departamento"],
+    properties: {
+        numero_ordem: { type: "integer", example: 3 },
+        titulo: { type: "string", example: "Troca de casa" },
+        descricao: { type: "string", example: "Trocar casa da sala 3" },
+        prioridade: { type: "string", example: "Alta" },
+        status: { type: "string", example: "Aberta" },
+        id_usuario: { type: "integer", example: 1 },
+        id_departamento: { type: "integer", example: 1 }
+    }
+}
 
         }
     }
