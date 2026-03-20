@@ -1,14 +1,22 @@
-import { Pool } from 'pg';   //importando a biblioteca PG para realizar a conexão com o banco de dados supabase
+import pkg from 'pg';
+const { Pool } = pkg;
+// import { Connection, Pool } from 'pg';   //importando a biblioteca PG para realizar a conexão com o banco de dados supabase
+const BD = new Pool ({
+    connectionString:"postgres://postgres.lymqdujrqccabstouqme:xnDLSe1HBE9SjOhR@aws-1-us-east-1.pooler.supabase.com:6543/postgres", 
+    ssl: {
+    rejectUnauthorized: false // O Supabase requer SSL
 
+}
+});
 // ----------------------------------------------------------------------------------------------  
             //so com isso ja vai aparecer a API usuarios 
-const BD = new Pool ({
-    user: 'postgres',
-    host: 'localhost',  //va no seu supabase
-    database: 'produtos',
-    port: 5432,
-    password: 'admin'   //senha que foi feita quando vc criou o novo projeto
-})
+// const BD = new Pool ({
+//     user: 'postgres',
+//     host: 'localhost',  //va no seu supabase
+//     database: 'produtos',
+//     port: 5432,
+//     password: 'admin'   //senha que foi feita quando vc criou o novo projeto
+// })
 // const BD = new Pool ({
 //     user: 'postgres',
 //     host: 'db.zyqtsgpkzbxvrziyawtw.supabase.co',  //va no seu supabase

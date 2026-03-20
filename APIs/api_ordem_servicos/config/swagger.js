@@ -13,7 +13,7 @@ const documentacao = {
 
     servers: [
         {
-            url: 'http://localhost:3000',
+            url: 'https://api-produtos-kappa.vercel.app',
             description: 'Localhost'
         }
     ],
@@ -158,6 +158,37 @@ const documentacao = {
                 }
             }
         },
+        "/login": {
+            post: {
+                tags: ["Usuários"],
+                summary: "Realizar login",
+                description: "Autentica um usuario e retorna seus dados",
+                requestBody: {
+                    required: true,
+                    content: {
+                        "application/json": {
+                            schema: {
+                                $ref: "#/components/schemas/Login_Usuario"
+                            }
+                        }
+                    }
+                },
+                responses: {
+                    200: { description: "Usuário cadastrado com sucesso!",
+                        content: {
+                        "application/json": {
+                            schema: {
+                                $ref: "#/components/schemas/Resposta_Usuario"
+                            }
+                        }
+                    }
+                },
+                    400: { description: "Erro na requisição" },
+                    500: { description: "Erro interno no servidor" }
+                }
+            }
+        },
+        
 
         "/departamentos": {
             get: {
@@ -494,6 +525,7 @@ const documentacao = {
                     senha: { type: "string", example: "senha123" }
                 }
             },
+            
 
             Lista_Departamentos: {
                 type: "object",
@@ -564,7 +596,7 @@ const documentacao = {
         id_departamento: { type: "integer", example: 1 }
     }
 },
-Atualizacao_Parcial_Ordem_Servicos: {
+        Atualizacao_Parcial_Ordem_Servicos: {
   type: "object",
   properties: {
     numero_ordem: { type: "integer", example: 3 },
@@ -575,8 +607,29 @@ Atualizacao_Parcial_Ordem_Servicos: {
     id_usuario: { type: "integer", example: 1 },
     id_departamento: { type: "integer", example: 1 }
   }
-}
+},
+         Login_Usuario:{
+                type: "object",
+                properties: {
+                    email: { type: "string", example: "ricardo@email.com" },
+                    senha: { type: "string", example: "senha123" }
+                }
+            },
+        Resposta_Login: {
+                type: "object",
+                properties: {
+                    message: {type: 'string', example: 'Login realizado com sucesso'},
+                    usuario:{
+                        type: 'object',
+                        properties:{
+                            id_usuario: {type: "integer", example: 1},
+                            email: {type: "string", example: "rafaela@.com"},
+                            senha: {type: "string", example: "Senha1234"}
 
+                        }
+                    }
+                }
+            }
 
         }
     }
