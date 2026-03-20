@@ -8,7 +8,7 @@ const router = Router();
 
 //----------------------------------------------------------------------------------------------------------
 //criando endpoint para listar todos os ordem_servicos
-router.get('/ordem_servicos', async(req, res) =>{
+router.get('/ordem_servicos', async(req, res) =>{  //fazendo executar o endpoint
     try{
 
         //criação de uma variavel para enviar o comando SQL
@@ -75,4 +75,118 @@ router.put('/ordem_servicos/:id_ordem', async(req, res) => {
     }
 })
 
+//----------------------------------------------------------------------------------------------
+    //endpoint patch para atualizar uma informação especifica 
+//rota patch atualizando parcialmente informações(algumas)
+                    //: para indicar q é um parametro
+router.patch('/ordem_servicos/:id_ordem', async (req, res) => {
+    const { id_ordem } = req.params;
+    const { numero_ordem, titulo, descricao, prioridade, status, data } = req.body;
+
+    try {
+        const verificar = await BD.query(
+            `SELECT * FROM ORDEM_SERVICOS WHERE id_ordem = $1`,
+            [id_ordem]
+        );
+
+        if (verificar.rows.length === 0) {
+            return res.status(404).json({ message: 'Ordem não encontrada' });
+        }
+
+        const campos = [];
+        const valores = [];
+        let contador = 1;
+
+        if (numero_ordem !== undefined) {
+            campos.push(`numero_ordem = $${contador}`);
+            valores.push(numero_ordem);
+            contador++;
+        }
+
+        if (titulo !== undefined) {
+            campos.push(`titulo = $${contador}`);
+            valores.push(titulo);
+            contador++;
+        }
+
+        if (descricao !== undefined) {
+            campos.push(`descricao = $${contador}`);
+            valores.push(descricao);
+            contador++;
+        }
+
+        if (prioridade !== undefined) {
+            campos.push(`prioridade = $${contador}`);
+            valores.push(prioridade);
+            contador++;
+        }
+
+        if (status !== undefined) {
+            campos.push(`status = $${contador}`);
+            valores.push(status);
+            contador++;
+        }
+
+        if (data !== undefined) {
+            campos.push(`data = $${contador}`);
+            valores.push(data);
+            contador++;
+        }
+
+        if (campos.length === 0) {
+            return res.status(400).json({ message: "Nenhum campo para atualizar" });
+        }
+
+        valores.push(id_ordem);
+
+        const comando = `
+            UPDATE ORDEM_SERVICOS 
+            SET ${campos.join(', ')} 
+            WHERE id_ordem = $${contador}
+        `;
+
+        await BD.query(comando, valores);
+
+        return res.status(200).json({ message: "Ordem atualizada com sucesso" });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Erro no servidor" });
+    }
+});
+
+router.delete('/ordem_servicos/:id_ordem', async (req, res) => {
+
+    const { id_ordem } = req.params; // pegando o id da ordem
+
+    try {
+        // primeiro verifica se existe
+        const verificar = await BD.query(
+            `SELECT * FROM ORDEM_SERVICOS WHERE id_ordem = $1`,
+            [id_ordem]
+        );
+
+        if (verificar.rows.length === 0) {
+            return res.status(404).json({
+                message: "Ordem de serviço não encontrada"
+            });
+        }
+
+        // executando o delete
+        const comando = `DELETE FROM ORDEM_SERVICOS WHERE id_ordem = $1`;
+
+        await BD.query(comando, [id_ordem]);
+
+        return res.status(200).json({
+            message: "Ordem de serviço removida com sucesso"
+        });
+
+    } catch (error) {
+        console.error('Erro ao deletar ordem de serviço', error.message);
+
+        return res.status(500).json({
+            message: "Erro interno no servidor: " + error.message
+        });
+    }
+});
 export default router

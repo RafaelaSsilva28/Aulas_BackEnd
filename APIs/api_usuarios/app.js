@@ -1,14 +1,13 @@
 import express from "express";
-import {BD, testarConexao} from './db.js';
-import rotasUsuarios from './src/routes/rotasUsuarios.js'
-import rotasDepartamentos from './src/routes/rotasDepartamentos.js'
-import rotasOrdemServico from './src/routes/rotasOrdemServico.js'
+import {BD, testarConexao} from '../api_produtos/db.js';
+import rotasUsuarios from '../api_usuarios/src/routes/rotasUsuarios.js'
+
 import cors from 'cors';
 
 //------------------------------------ SWAGGER
 //importando swagger
 import swaggerUi from 'swagger-ui-express';
-import documentacao from "./config/swagger.js";
+import documentacao from "../api_usuarios/config/swagger.js";
 
 
 
@@ -30,8 +29,7 @@ app.get('/', async(req, res) =>{
 
 //utilizando rotas falando pro App que vamos urilizar as rotas em nossos metodos
 app.use(rotasUsuarios);
-app.use(rotasDepartamentos);
-app.use(rotasOrdemServico);
+
 
 const porta = 3000;
 app.listen(porta, () =>{
